@@ -5,7 +5,7 @@ pipeline {
     agent any
     parameters {
         string(name: 'awsProfile', defaultValue: 'cicd', description: 'The AWS profile name to resolve credentials.')
-        string(name: 'awsAccountNumber', defaultValue: '', description: 'The AWS account number to use.')
+        string(name: 'awsAccountNumber', defaultValue: '877267163556', description: 'The AWS account number to use.')
     }
     environment { 
         AWS_PROFILE = "${params.awsProfile}"
