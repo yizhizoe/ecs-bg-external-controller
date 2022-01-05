@@ -7,8 +7,8 @@ pipeline {
 
         string(name: 'awsAccountNumber', defaultValue: '877267163556', description: 'The AWS account number to use.')
     }
-    environment { 
-
+    environment {
+        AWS_REGION = "us-east-1"
         AWS_ACCOUNT_NUMBER = "${params.awsAccountNumber}"
     }
     stages {
