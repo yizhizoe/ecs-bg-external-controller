@@ -19,7 +19,7 @@ pipeline {
         }
         stage('EcrPush') {
             steps {
-                withAWS(roleAccount: $AWS_ACCOUNT_NUMBER, role:'jenkinsadmin') {
+                withAWS(roleAccount: '877267163556', role:'jenkinsadmin') {
                     sh 'aws s3 ls --region $AWS_REGION'
                     script {
                         readProperties(file: 'Makefile.env').each { key, value -> env[key] = value }
