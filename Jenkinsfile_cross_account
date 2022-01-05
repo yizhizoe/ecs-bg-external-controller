@@ -19,12 +19,12 @@ pipeline {
         }
         stage('EcrPush') {
             steps {
-                withAWS(region:$AWS_REGION, roleAccount: $AWS_ACCOUNT_NUMBER, role:'jenkinsadmin') {
-                    sh 'aws s3 ls'
+                withAWS(roleAccount: $AWS_ACCOUNT_NUMBER, role:'jenkinsadmin') {
+                    sh 'aws s3 ls --region $AWS_REGION'
                     script {
                         readProperties(file: 'Makefile.env').each { key, value -> env[key] = value }
                     }
-                    sh '$(aws ecr get-login --no-include-email --registry-ids $AWS_ACCOUNT_NUMBER)'
+                    sh '$(aws ecr get-login --no-include-email --registry-ids $AWS_ACCOUNT_NUMBER --region $AWS_REGION)'
                     script {
                         def PUSH_RESULT = sh (
                         script: "make push-image",
